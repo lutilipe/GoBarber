@@ -24,14 +24,14 @@ const ToastProvider: React.FC = ({ children }) => {
   );
 };
 
-function useToast() {
+function useToast(): ToastContextData {
   const context = useContext(ToastContext);
 
   if (!context) {
     throw new Error('useToast must be used within ToastProvider');
   }
 
-  return context as ToastContextData;
+  return context;
 }
 
 export { useToast, ToastProvider };
