@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useContext } from 'react';
+import React, { useRef, useCallback } from 'react';
 
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
@@ -23,8 +23,6 @@ const SignIn: React.FC = () => {
 
   const { signIn, user } = useAuth();
   const { addToast } = useToast();
-
-  console.log(user);
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -51,7 +49,11 @@ const SignIn: React.FC = () => {
 
         formRef.current?.setErrors(errors);
 
-        addToast();
+        addToast({
+          type: 'error',
+          title: 'Erro ao autenticar',
+          description: 'Erro ao fazer o login. Verifique as credenciais.',
+        });
       }
     },
     [signIn, addToast],
